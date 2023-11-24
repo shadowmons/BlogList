@@ -17,10 +17,20 @@ app.post("/submit", (req, res) => {
   console.log(req.body["postTitle"]);
   console.log(req.body["textarea"]);
   const fecha = new Date();
-  posts.unshift({"title": req.body["postTitle"], "body":req.body["textarea"], "date": fecha.toDateString()});
+  posts.unshift({"title": req.body["postTitle"],"user": req.body["user"], "body":req.body["textarea"], "date": fecha.toDateString()});
   console.log(posts);
   res.redirect("/");
   
+});
+
+app.get("/FAQs", (req, res) => {
+  res.render("FAQs.ejs", res.locals={posts: posts});
+
+});
+
+app.get("/RAQs", (req, res) => {
+  res.render("RAQs.ejs", res.locals={posts: posts});
+
 });
   
 app.listen(port, () => {
