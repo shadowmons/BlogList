@@ -5,13 +5,45 @@
         <div class="row g-5">
           <div class="col-md-8">
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
-              ymce
+              Write your new post:
             </h3>
       
-            <article class="blog-post">
-               <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
-            </article>
+            <form action="/submit" method="POST">
+              <div class="form-group pb-2">
+                <label for="postTitle">Post Title</label>
+                <input type="text" class="form-control" id="postTitle" name="postTitle">
+              </div>
+              
+              <div class="form-group pb-2">
+                <label for="textarea">Text</label>
+                <textarea class="form-control" id="textarea"  name="textarea" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
       
+
+            <article class="blog-post">
+              <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                Recent Post
+              </h3>
+
+              <% if (locals.posts) { %>
+                <% posts.forEach(i => { %>               
+              <h2 class="display-5 link-body-emphasis mb-1">              
+                <%= i.title%>
+              </h2>
+              <p class="blog-post-meta">
+                <%= i.date %> by User
+              </p>
+              <p>
+                <%= i.body %>
+              </p>
+              <hr>
+              <% }); %>
+              <% } %>
+           
+            </article>
+
       
           </div>
       
